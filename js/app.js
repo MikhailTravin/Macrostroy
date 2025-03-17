@@ -11407,9 +11407,7 @@ PERFORMANCE OF THIS SOFTWARE.
         function timer(id, deadLine) {
             function getTimeRemaining(endTime) {
                 let DAYS, HOURS, MINUTES, SECONDS;
-                const endTimeDate = new Date(endTime);
-                const currentDate = new Date;
-                const t = endTimeDate - currentDate;
+                const t = Date.parse(endTime) - Date.parse(new Date);
                 if (t <= 0) {
                     DAYS = 0;
                     HOURS = 0;
@@ -11419,7 +11417,7 @@ PERFORMANCE OF THIS SOFTWARE.
                     DAYS = getZero(Math.floor(t / 1e3 / 60 / 60 / 24));
                     HOURS = getZero(Math.floor(t / 1e3 / 60 / 60) % 24);
                     MINUTES = getZero(Math.floor(t / 1e3 / 60) % 60);
-                    SECONDS = getZero(Math.floor(t / 1e3) % 60);
+                    SECONDS = Math.floor(t / 1e3) % 60;
                 }
                 return {
                     t,
@@ -11430,8 +11428,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 };
             }
             function getZero(num) {
-                if (num < 0) return "00";
-                if (num >= 0 && num < 10) return `0${num}`;
+                if (num >= 0 && num <= 10) return `0${num}`;
                 return num;
             }
             function setClock(selector, endTime) {
@@ -11439,32 +11436,28 @@ PERFORMANCE OF THIS SOFTWARE.
                 const hours = document.querySelectorAll(".time-count__hours .time-count__val");
                 const minutes = document.querySelectorAll(".time-count__minutes .time-count__val");
                 const seconds = document.querySelectorAll(".time-count__seconds .time-count__val");
-                if (!days.length || !hours.length || !minutes.length || !seconds.length) {
-                    console.error("Не найдены элементы для отображения таймера");
-                    return;
-                }
                 updateClock();
                 function updateClock() {
                     const timeInterval = setInterval(updateClock, 1e3);
                     const t = getTimeRemaining(endTime);
                     days.forEach((day => {
-                        day.innerHTML = getZero(t.DAYS).toString().replace(/\d/gi, (substring => `<span>${substring}</span>`));
+                        day.innerHTML = t.DAYS.toString().padStart(2, "0").replace(/\d/gi, (substring => `<span>${substring}</span>`));
                     }));
                     hours.forEach((hour => {
-                        hour.innerHTML = getZero(t.HOURS).toString().replace(/\d/gi, (substring => `<span>${substring}</span>`));
+                        hour.innerHTML = t.HOURS.toString().padStart(2, "0").replace(/\d/gi, (substring => `<span>${substring}</span>`));
                     }));
                     minutes.forEach((minute => {
-                        minute.innerHTML = getZero(t.MINUTES).toString().replace(/\d/gi, (substring => `<span>${substring}</span>`));
+                        minute.innerHTML = t.MINUTES.toString().padStart(2, "0").replace(/\d/gi, (substring => `<span>${substring}</span>`));
                     }));
                     seconds.forEach((second => {
-                        second.innerHTML = getZero(t.SECONDS).toString().replace(/\d/gi, (substring => `<span>${substring}</span>`));
+                        second.innerHTML = t.SECONDS.toString().padStart(2, "0").replace(/\d/gi, (substring => `<span>${substring}</span>`));
                     }));
                     if (t.t <= 0) clearInterval(timeInterval);
                 }
             }
             setClock(id, deadLine);
         }
-        timer(".timer", "2025/04/30");
+        timer(".timer", "2025-04-30");
         const filterButtonMob = document.querySelector(".filter-tabs__button-mob");
         if (filterButtonMob) {
             const filterContents = document.querySelectorAll(".filter-tabs__content");

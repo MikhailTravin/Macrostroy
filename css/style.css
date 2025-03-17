@@ -3000,6 +3000,7 @@ p {
 
 .main-home__column.main-column .main-home__titles {
   margin: 0px 8px 0px 8px;
+  width: calc(100% - 16px);
 }
 
 .main-home__item {
@@ -3839,6 +3840,12 @@ p {
   margin: 0px 0px 0px 15px;
 }
 
+.top-partnership-block__column.about-column .top-partnership-block__item picture {
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+
 .top-partnership-block__column.about-column .top-partnership-block__item img {
   height: 100%;
   top: 0;
@@ -3859,6 +3866,14 @@ p {
   border-radius: 8px;
   padding: 25px 15px 20px 25px;
   overflow: hidden;
+}
+
+.top-partnership-block__item picture {
+  position: absolute;
+  right: -45px;
+  top: -55px;
+  height: calc(100% + 40px);
+  width: auto;
 }
 
 .top-partnership-block__item img {
@@ -4956,6 +4971,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
 
   .apartments__column.apartments-main-column .apartments__slide {
     border-radius: 6px;
+  }
+
+  .apartments__column.apartments-main-column .apartments__slide img {
+    height: 468px;
   }
 
   .apartments__column.apartments-main-column .apartments__desc {
@@ -6140,6 +6159,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
     min-height: 210px;
   }
 
+  .top-partnership-block__column.about-column .top-partnership-block__item picture {
+    right: -50px;
+  }
+
   .top-partnership-block__column.about-column .top-partnership-block__item img {
     right: -50px;
   }
@@ -6147,6 +6170,12 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   .top-partnership-block__item {
     padding: 15px 10px 12px 10px;
     min-height: 160px;
+  }
+
+  .top-partnership-block__item picture {
+    right: -35px;
+    top: 0;
+    height: 100%;
   }
 
   .top-partnership-block__item img {
@@ -6294,6 +6323,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
 
   .main-about__subtitle {
     font-size: 9px;
+  }
+
+  .top-partnership-block__column.about-column .top-partnership-block__item picture {
+    right: -80px;
   }
 
   .top-partnership-block__column.about-column .top-partnership-block__item img {

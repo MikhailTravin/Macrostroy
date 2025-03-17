@@ -3998,6 +3998,9 @@ p {
 }
 
 .ticker__column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 154px;
           flex: 0 0 154px;

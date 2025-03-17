@@ -4530,6 +4530,13 @@
                 document.documentElement.classList.add(className);
             }));
         }
+        function addLoadedClass() {
+            window.addEventListener("load", (function() {
+                setTimeout((function() {
+                    document.documentElement.classList.add("loaded");
+                }), 0);
+            }));
+        }
         function functions_getHash() {
             if (location.hash) return location.hash.replace("#", "");
         }
@@ -11560,13 +11567,18 @@ PERFORMANCE OF THIS SOFTWARE.
         }
         const tickerBody = document.querySelector(".ticker__body");
         if (tickerBody) {
-            const originalContent = tickerBody.innerHTML;
-            tickerBody.innerHTML += originalContent;
+            const clonedContent = tickerBody.cloneNode(true);
+            tickerBody.appendChild(clonedContent);
             const columns = document.querySelectorAll(".ticker__column");
             const columnWidth = 154;
             const gap = 5;
             const totalWidth = columns.length * (columnWidth + gap);
+            console.log("Ширина колонки:", columnWidth);
+            console.log("Расстояние между колонками:", gap);
+            console.log("Общая ширина:", totalWidth);
             tickerBody.style.width = `${totalWidth}px`;
+            tickerBody.style.animation = "scroll 10s linear infinite";
+            tickerBody.style.webkitAnimation = "scroll 10s linear infinite";
         }
         function script_scroll() {
             let scrolls = document.querySelectorAll(".scroll");
@@ -11600,6 +11612,7 @@ PERFORMANCE OF THIS SOFTWARE.
         script_scroll();
         window["FLS"] = false;
         isWebp();
+        addLoadedClass();
         menuInit();
         spollers();
         tabs();

@@ -140,6 +140,10 @@ h6 {
   font-size: inherit;
 }
 
+body {
+  opacity: 0;
+}
+
 .lock body {
   overflow: hidden;
   -ms-touch-action: none;
@@ -150,6 +154,10 @@ h6 {
   overflow: hidden;
   -ms-touch-action: none;
       touch-action: none;
+}
+
+.loaded body {
+  opacity: 1;
 }
 
 .wrapper {
